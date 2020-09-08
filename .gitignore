@@ -1,4 +1,11 @@
 # created by virtualenv automatically
 
 #virtual env files
-/env
+/Lib
+/Scripts
+/pyvenv.cfg
+
+#python cache file
+/django_weather_app/__pycache__
+/weather_app/__pycache__
+/weather_app/migrations/__pycache__
