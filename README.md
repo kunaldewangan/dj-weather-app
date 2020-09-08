@@ -1,1 +1,1 @@
-# dj-weather-app
+# Django Weather APP
