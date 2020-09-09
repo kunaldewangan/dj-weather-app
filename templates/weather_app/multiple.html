@@ -1,0 +1,70 @@
+{% extends 'weather_app/base.html' %}
+{% block body_block %}
+
+<div class="container-fluid pt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="multiple-city-card">
+                {% for city in city_list %}
+                <span>
+
+                    <div class="card" style="width: 18rem;border:3px solid;box-shadow: 5px 10px;">
+                        <div class="card-header text-center border bg-warning">
+                            <h5>City Weather</h5>
+
+                        </div>
+                        <ul class="list-group list-group-flush text-center">
+
+                            <li class="list-group-item text-primary font-weight-bold">City: {{ city.name }}</li>
+                            <li class="list-group-item text-primary font-weight-bold">Temperature: {{ city.main.temp }}C</li>
+                            {% for weather in city.weather %}
+                            <li class="list-group-item text-primary font-weight-bold">Status:
+                                {{ weather.description }}</li>
+                            <li class="list-group-item text-primary font-weight-bold">Icon: <img
+                                    src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="image"></li>
+                            {% endfor %}
+                        </ul>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </span>
+                {% endfor %}
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+            
+            <div class="card mt-3" style="width: 18rem;border:3px solid;box-shadow: 5px 10px;">
+                <div class="card-header text-center border bg-info">
+                    <h5>Add City</h5>
+
+                </div>
+                <ul class="list-group list-group-flush text-center">
+                    {% for city in city_list %}
+                    <li class="list-group-item text-primary font-weight-bold">City: {{ city.name }}</li>
+                    {% endfor %}
+                </ul>
+                <div class="card-footer">
+
+                    {% if adding_city %}
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{adding_city}}
+                        <button class="btn btn-primary">
+                            Add
+                        </button>
+                    </form>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
